@@ -1,15 +1,7 @@
  namespace ps2controller {
-    //接cs
+
     let chipSelect = DigitalPin.P12
-    //pins.digitalWritePin(chipSelect, 1)
-    //spi的用法参考https://makecode.microbit.org/reference/pins/spi-pins
-    //function spiPins(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin): void;
-    //MOSI, micro:bit SPI data output pin MISO, micro:bit SPI data input pin
-    //所以mosi的参数应该对应着接控制器的cmd接口 MISO参数对应着dat接口
-    //cmd dat sck
-    //pins.spiPins(DigitalPin.P8, DigitalPin.P14, DigitalPin.P13)
-    //pins.spiFormat(8, 3)
-    //pins.spiFrequency(250000)
+    pins.digitalWritePin(chipSelect, 1)
 
     let pad = pins.createBuffer(6)
     let connected = false
@@ -47,13 +39,6 @@
         return receive
      }
 
-    export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
-        chipSelect = cs;
-        pins.spiPins(mosi, miso, sck);
-        pins.spiFormat(8, 3);
-        pins.spiFrequency(250000);
-    }
-
     export enum PS2Button {
         Left,
         Down,
@@ -77,6 +62,14 @@
         LX,
         LY,
      };
+
+    export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
+        chipSelect = cs;
+        pins.digitalWritePin(chipSelect, 1)
+        pins.spiPins(mosi, miso, sck);
+        pins.spiFormat(8, 3);
+        pins.spiFrequency(250000);
+    }
 
      export function button_pressed(b: PS2Button): number {
         if(!connected) return 0x00
@@ -128,7 +121,7 @@
         return 0;
     }
 
-    export function poll(): boolean {
+    function poll(): boolean {
         let buf = send_command(poll_cmd)
         if (buf[2] != 0x5a) {
             return false;
@@ -143,4 +136,7 @@
         return true
     }
 
+    basic.forever(function () {
+        poll();
+    })
  }
