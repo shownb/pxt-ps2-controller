@@ -1,0 +1,4 @@
+{
+  "ps2controller.SPI_init|block": "初始化spi |mosi %pin|miso %pin|sck %pin",
+  "ps2controller.poll|block":  "开始接收" 
+}
