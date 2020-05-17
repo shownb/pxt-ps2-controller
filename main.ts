@@ -3,6 +3,10 @@
     let chipSelect = DigitalPin.P12
     pins.digitalWritePin(chipSelect, 1)
 
+    pins.spiPins(DigitalPin.P15, DigitalPin.P14, DigitalPin.P13)
+    pins.spiFormat(8, 3)
+    pins.spiFrequency(250000)
+
     let pad = pins.createBuffer(6)
     let connected = false
 
@@ -62,14 +66,6 @@
         LX,
         LY,
      };
-
-    export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
-        chipSelect = cs;
-        pins.digitalWritePin(chipSelect, 1)
-        pins.spiPins(mosi, miso, sck);
-        pins.spiFormat(8, 3);
-        pins.spiFrequency(250000);
-    }
 
      export function button_pressed(b: PS2Button): number {
         if(!connected) return 0x00
