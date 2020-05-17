@@ -129,7 +129,7 @@
         return 0;
     }
 
-    export function poll(): boolean {
+    function poll(): boolean {
         let buf = send_command(poll_cmd)
         if (buf[2] != 0x5a) {
             return false;
@@ -143,4 +143,7 @@
 
         return true
     }
+    basic.forever(function () {
+        poll();
+    })
  }
