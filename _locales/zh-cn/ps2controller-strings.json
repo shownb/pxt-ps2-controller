@@ -1,4 +1,0 @@
-{
-  "ps2controller.button_pressed|block": "按下按键|%PS2Button",
-  "ps2controller.poll|block":  "获取无线数据"
-}
