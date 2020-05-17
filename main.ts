@@ -38,8 +38,7 @@
 
         return receive
      }
-export SpiPin {
-}
+  
     export enum PS2Button {
         Left,
         Down,
@@ -64,7 +63,7 @@ export SpiPin {
         LY,
      };
 
-    export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin):void {
+    export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
         //spi的用法参考https://makecode.microbit.org/reference/pins/spi-pins
         //function spiPins(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin): void;
         //MOSI, micro:bit SPI data output pin MISO, micro:bit SPI data input pin
