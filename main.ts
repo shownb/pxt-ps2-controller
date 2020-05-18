@@ -143,7 +143,9 @@
 
         return true
     }
+  /*
     basic.forever(function () {
         poll();
     })
+    */
  }
