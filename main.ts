@@ -64,6 +64,7 @@
      };
 
     export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
+     //ps2controller.SPI_init(DigitalPin.P12,DigitalPin.P8, DigitalPin.P14, DigitalPin.P13)
         //spi的用法参考https://makecode.microbit.org/reference/pins/spi-pins
         //function spiPins(mosi: DigitalPin, miso: DigitalPin, sck: DigitalPin): void;
         //MOSI, micro:bit SPI data output pin MISO, micro:bit SPI data input pin
