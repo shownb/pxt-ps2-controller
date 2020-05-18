@@ -129,7 +129,7 @@
         return 0;
     }
 
-    function poll(): boolean {
+    export function poll(): boolean {
         let buf = send_command(poll_cmd)
         if (buf[2] != 0x5a) {
             return false;
