@@ -41,6 +41,7 @@
   
     export enum PS2Button {
         //% block="左"
+        //% block.loc.de="links"
         Left,
         //% block="下"
         Down,
@@ -48,13 +49,19 @@
         Right,
         //% block="上"
         Up,
+        //% block="开始"
         Start,
         Analog_Left,
         Analog_Right,
+        //% block="选择"
         Select,
+        //% block="方形"
         Square,
+        //% block="交叉"
         Cross,
+        //% block="圆形"
         Circle,
+        //% block="三角"
         Triangle,
         R1,
         L1,
@@ -66,7 +73,11 @@
         LX,
         LY,
      };
-    //% block
+    //% block="初始化spi引脚 cs$cs mosi%mosi miso%miso sck%sck"
+    //% cs.defl=DigitalPin.P12
+    //% mosi.defl=DigitalPin.P8
+    //% miso.defl=DigitalPin.P14
+    //% sck.defl=DigitalPin.P13
     export function SPI_init(cs:DigitalPin,mosi:DigitalPin,miso:DigitalPin,sck:DigitalPin) {
      //ps2controller.SPI_init(DigitalPin.P12,DigitalPin.P8, DigitalPin.P14, DigitalPin.P13)
         //spi的用法参考https://makecode.microbit.org/reference/pins/spi-pins
@@ -84,6 +95,7 @@
         pins.spiFrequency(250000);
     }
      //% block="按键$b被按下"
+     //% block.loc.de="wenn Taste $b gedrückt"
      export function button_pressed(b: PS2Button): number {
         if(!connected) return 0x00
 
@@ -134,6 +146,7 @@
         return 0;
     }
     //% block="收取遥控器信息"
+    //% block.loc.de="Informationen zur Fernbedienung abrufen"
     export function poll(): boolean {
         let buf = send_command(poll_cmd)
         if (buf[2] != 0x5a) {
